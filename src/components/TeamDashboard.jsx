@@ -56,7 +56,7 @@ const TeamDashboard = () => {
       return;
     }
     try {
-      const res = await fetch("http://localhost:8080/team", {
+      const res = await fetch("https://reactandspringbootbackend-production.up.railway.app/team", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: newTeamName, score: scoreValue }),
@@ -75,7 +75,7 @@ const TeamDashboard = () => {
     if (!window.confirm("Are you sure you want to delete this team?")) return;
 
     try {
-      const res = await fetch(`http://localhost:8080/team/${id}`, {
+      const res = await fetch(`https://reactandspringbootbackend-production.up.railway.app/team/${id}`, {
         method: "DELETE",
       });
       if (!res.ok) throw new Error("Failed to delete team");

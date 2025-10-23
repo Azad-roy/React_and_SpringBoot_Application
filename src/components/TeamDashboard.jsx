@@ -16,7 +16,7 @@ const TeamDashboard = () => {
   const loadTeams = async (page = 0) => {
     try {
       setLoading(true);
-      const res = await fetch(`http://localhost:8080/team?pageNum=${page}&pageSize=${pageSize}`);
+      const res = await fetch(`https://reactandspringbootbackend-production.up.railway.app/team?pageNum=${page}&pageSize=${pageSize}`);
       if (!res.ok) throw new Error("Failed to fetch teams");
       const pageData = await res.json();
       setTeams(pageData.content || []);
@@ -36,7 +36,7 @@ const TeamDashboard = () => {
 
   const fetchTeam = async (name) => {
     try {
-      const res = await fetch(`http://localhost:8080/team/${name}`);
+      const res = await fetch(`https://reactandspringbootbackend-production.up.railway.app/team/${name}`);
       if (!res.ok) throw new Error("Failed to fetch team");
       const team = await res.json();
       setPopupTeam(team);

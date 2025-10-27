@@ -135,7 +135,7 @@ const TeamDashboard = () => {
           ) : (
             teams.map((team) => (
               <div key={team.name} className="bg-white ...">
-                ...
+                
                 <div className="card flex flex-col items-center p-6 shadow-lg rounded-xl relative">
                   <div className="card-icon ..."><FaUsers size={32} /></div>
                   <div className="card-title text-lg font-semibold">{team.name}</div>

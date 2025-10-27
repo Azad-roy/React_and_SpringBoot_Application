@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FaPlus, FaUsers } from "react-icons/fa";
 
 const pageSize = 6;
+const API_URL = import.meta.env.VITE_DB_URL;
 
 const TeamDashboard = () => {
   const [teams, setTeams] = useState([]);
@@ -16,7 +17,7 @@ const TeamDashboard = () => {
   const loadTeams = async (page = 0) => {
     try {
       setLoading(true);
-      const res = await fetch(`https://reactandspringbootbackend-production.up.railway.app/team?pageNum=${page}&pageSize=${pageSize}`);
+      const res = await fetch(`${API_URL}/team?pageNum=${page}&pageSize=${pageSize}`);
       if (!res.ok) throw new Error("Failed to fetch teams");
       const pageData = await res.json();
       setTeams(pageData.content || []);
@@ -36,7 +37,7 @@ const TeamDashboard = () => {
 
   const fetchTeam = async (name) => {
     try {
-      const res = await fetch(`https://reactandspringbootbackend-production.up.railway.app/team/${name}`);
+      const res = await fetch(`${API_URL}/team/${name}`);
       if (!res.ok) throw new Error("Failed to fetch team");
       const team = await res.json();
       setPopupTeam(team);
@@ -56,7 +57,7 @@ const TeamDashboard = () => {
       return;
     }
     try {
-      const res = await fetch("https://reactandspringbootbackend-production.up.railway.app/team", {
+      const res = await fetch("${API_URL}/team", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: newTeamName, score: scoreValue }),
@@ -75,7 +76,7 @@ const TeamDashboard = () => {
     if (!window.confirm("Are you sure you want to delete this team?")) return;
 
     try {
-      const res = await fetch(`https://reactandspringbootbackend-production.up.railway.app/team/${id}`, {
+      const res = await fetch(`${API_URL}/team/${id}`, {
         method: "DELETE",
       });
       if (!res.ok) throw new Error("Failed to delete team");

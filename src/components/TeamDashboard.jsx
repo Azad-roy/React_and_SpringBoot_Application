@@ -57,7 +57,7 @@ const TeamDashboard = () => {
       return;
     }
     try {
-      const res = await fetch("${API_URL}/team", {
+      const res = await fetch(`${API_URL}/team`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: newTeamName, score: scoreValue }),
